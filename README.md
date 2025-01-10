@@ -1,4 +1,4 @@
-The Medication Reminder App is a user-friendly application designed to help individuals manage their medication schedules effectively
+The Medication Reminder App is a user-friendly application designed to help individuals manage their medication schedules effectively, espacially eldery 
 
 Project Requirements:
 
