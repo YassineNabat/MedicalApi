@@ -9,3 +9,7 @@ MEDICATION_FILE = 'medication.csv'
 
 #Initialize text-to-speech engine
 speech_engine = pyttsx3.init()
+
+def speak_text(command):
+    speech_engine.say(command)
+    speech_engine.runAndWait()
