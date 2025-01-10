@@ -46,7 +46,7 @@ def display_medication_info():
     top.mainloop()
 
 #set reminders for medication
-def et_medication_reminders():
+def st_medication_reminders():
     medication_data = load_medication_data()
     current_time = datetime.datetime.now().strftime("%H:%M")
     reminders_triggered = False
