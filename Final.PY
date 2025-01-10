@@ -3,6 +3,8 @@ from tkinter import ttk, messagebox
 import datetime
 import csv
 import pyttsx3
+from PIL import Image, ImageTk
+import dateutil.parser
 
 
 MEDICATION_FILE = 'medication.csv'
@@ -125,3 +127,42 @@ def add_medication():
     ttk.Button(top1, text="Add Medication", command=submit_medication).pack(pady=20)
     top1.after(500, speak_text, "Please enter your medication details.")
     top1.mainloop()
+
+#close the application
+def close_app():
+    window.destroy()
+
+# Create the main window
+window = tk.Tk()
+window.title("Medication Reminder App")
+window.geometry("500x500")
+window.config(bg="#f4f4f4")
+
+# Main header
+header_label = tk.Label(window, text="Medication Reminder App", font=("Helvetica", 24, "bold"),
+                        bg="#4CAF50", fg="white", pady=20)
+header_label.pack(fill="x")
+
+# Button frame and buttons
+button_frame = ttk.Frame(window, padding=20)
+button_frame.pack(pady=50)
+
+buttons = [
+    ("Add Medication", add_medication),
+    ("Display Medication", display_medication_info),
+    ("Set Reminder", set_medication_reminders),
+    ("Exit", close_app)
+]
+
+for text, command in buttons:
+    ttk.Button(button_frame, text=text, command=command, style="Custom.TButton").pack(pady=10, ipadx=20)
+
+# Define custom button styling
+style = ttk.Style()
+style.configure("Custom.TButton", font=("Helvetica", 14), foreground="#ffffff", background="#4CAF50")
+style.map("Custom.TButton", foreground=[('active', 'white')], background=[('active', '#45a049')])
+
+window.after(500, speak_text, "Welcome to the Medication Reminder App.")
+
+# Start the application loop
+window.mainloop()
