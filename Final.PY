@@ -63,3 +63,65 @@ def set_medication_reminders():
     if not reminders_triggered:
         speak_text("No reminders at this time.")
 
+#add medication to the schedule
+def add_medication_schedule(medication_name, dosage, frequency, schedule_time):
+    try:
+        datetime.datetime.strptime(schedule_time, "%H:%M")  # Validate time format
+        with open(MEDICATION_FILE, 'a', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow([medication_name, dosage, frequency, schedule_time])
+        messagebox.showinfo("Success", "Medication schedule added successfully.")
+        speak_text("Medication schedule added successfully.")
+    except ValueError:
+        messagebox.showerror("Invalid Time Format", "Please enter time in HH:MM format.")
+
+
+#display add medication form
+def add_medication():
+    def submit_medication():
+        add_medication_schedule(entry_medication_name.get(), entry_dosage.get(), entry_frequency.get(), entry_schedule_time.get())
+        top1.destroy()
+
+    top1 = tk.Toplevel()
+    top1.title("Add Medication")
+    top1.geometry("450x400")
+    top1.config(bg="#f4f4f4")
+
+    fields = ["Medication Name", "Dosage", "Frequency", "Schedule Time (HH:MM)"]
+    entries = []
+    for field in fields:
+        tk.Label(top1, text=f"{field}:", font=("Helvetica", 12), fg="#333333", bg="#f4f4f4").pack(pady=5)
+        entry = tk.Entry(top1, font=("Helvetica", 12), width=30)
+        entry.pack(pady=5)
+        entries.append(entry)
+
+    entry_medication_name, entry_dosage, entry_frequency, entry_schedule_time = entries
+
+    ttk.Button(top1, text="Add Medication", command=submit_medication).pack(pady=20)
+    top1.after(500, speak_text, "Please enter your medication details.")
+    top1.mainloop()
+
+#display add medication form
+def add_medication():
+    def submit_medication():
+        add_medication_schedule(entry_medication_name.get(), entry_dosage.get(), entry_frequency.get(), entry_schedule_time.get())
+        top1.destroy()
+
+    top1 = tk.Toplevel()
+    top1.title("Add Medication")
+    top1.geometry("450x400")
+    top1.config(bg="#f4f4f4")
+
+    fields = ["Medication Name", "Dosage", "Frequency", "Schedule Time (HH:MM)"]
+    entries = []
+    for field in fields:
+        tk.Label(top1, text=f"{field}:", font=("Helvetica", 12), fg="#333333", bg="#f4f4f4").pack(pady=5)
+        entry = tk.Entry(top1, font=("Helvetica", 12), width=30)
+        entry.pack(pady=5)
+        entries.append(entry)
+
+    entry_medication_name, entry_dosage, entry_frequency, entry_schedule_time = entries
+
+    ttk.Button(top1, text="Add Medication", command=submit_medication).pack(pady=20)
+    top1.after(500, speak_text, "Please enter your medication details.")
+    top1.mainloop()
