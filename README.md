@@ -1,6 +1,6 @@
 The Medication Reminder App is a user-friendly application designed to help individuals manage their medication schedules effectively, espacially eldery 
 
-Project Requirements:
+Project Requirements : 
 
 Create a Medication Reminder App with a GUI using Tkinter.
 Allow users to add medication schedules by providing medication name, dosage, frequency, and schedule time.
